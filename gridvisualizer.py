@@ -24,16 +24,33 @@ import numpy as np
 zvals = np.random.rand(100,100)*10-5
 
 # make a color map of fixed colors
-cmap = mpl.colors.ListedColormap(['blue','black','red'])
+cmap = mpl.colors.ListedColormap(['black','green','white'])
 bounds=[-6,-2,2,6]
 norm = mpl.colors.BoundaryNorm(bounds, cmap.N)
 
-# tell imshow about color map so that only set colors are used
-img = pyplot.imshow(zvals,interpolation='nearest',
-                    cmap = cmap,norm=norm)
+fig = pyplot.figure(2)
 
-# make a color bar
-pyplot.colorbar(img,cmap=cmap,
-                norm=norm,boundaries=bounds,ticks=[-5,0,5])
+cmap2 = mpl.colors.LinearSegmentedColormap.from_list('my_colormap',
+                                           ['black','green','white'],
+                                           256)
+
+img2 = pyplot.imshow(zvals,interpolation='nearest',
+                    cmap = cmap2,
+                    origin='lower')
+
+pyplot.colorbar(img2,cmap=cmap2)
+
+fig.savefig("image2.png")
 
 pyplot.show()
+
+
+
+
+
+
+
+
+
+
+
