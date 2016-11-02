@@ -40,8 +40,6 @@ img2 = pyplot.imshow(zvals,interpolation='nearest',
 
 pyplot.colorbar(img2,cmap=cmap2)
 
-fig.savefig("image2.png")
-
 pyplot.show()
 
 
