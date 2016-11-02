@@ -13,6 +13,8 @@ plt.show()"""
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
+str("y tho")
+
 fig1 = plt.figure()
 ax1 = fig1.add_subplot(111, aspect='equal')
 ax1.add_patch(
@@ -23,6 +25,5 @@ ax1.add_patch(
     )
 )
 fig1.savefig('rect1.png', dpi=90, bbox_inches='tight')"""
-from pylab import *
-plot([1,2,3])
-show()
+import matplotlib.rcsetup as rcsetup
+print(rcsetup.all_backends)
