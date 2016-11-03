@@ -1,6 +1,10 @@
+"""
 import matplotlib as mpl
 import matplotlib.pyplot as pyplot
 import numpy as np
+from random import randint
+
+x1, x2, x3, x4, x5, y1, y2, y3, y4, y5 = randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500)
 
 # make values from -5 to 5, for this example
 zvals = np.random.rand(500,500)*10-5
@@ -22,7 +26,20 @@ img2 = pyplot.imshow(zvals,interpolation='nearest',
 
 pyplot.colorbar(img2,cmap=cmap2)
 
-pyplot.show()
+pyplot.show()"""
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+x = np.arange(10)
+y = np.arange(10)
+z = np.zeros([10,10])
+z[1,5] = 10
+z[2,7] = 20
+z[3,9] = 30
+plt.pcolor(x,y,z)
+plt.colorbar()
+
+plt.show()
 
 
 
