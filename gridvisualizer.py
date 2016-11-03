@@ -30,12 +30,15 @@ pyplot.show()"""
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-x = np.arange(10)
-y = np.arange(10)
-z = np.zeros([10,10])
+
+xMax, yMax = 100, 100
+x = np.arange(xMax)
+y = np.arange(yMax)
+z = np.zeros([xMax,yMax])
 z[1,5] = 10
 z[2,7] = 20
 z[3,9] = 30
+
 plt.pcolormesh(x,y,z)
 plt.colorbar()
 
