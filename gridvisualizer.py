@@ -31,7 +31,9 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
+x1, x2, x3, x4, x5, y1, y2, y3, y4, y5 = randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500)
 xMax, yMax = 100, 100
+
 x = np.arange(xMax)
 y = np.arange(yMax)
 z = np.zeros([xMax,yMax])
