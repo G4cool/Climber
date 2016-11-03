@@ -30,16 +30,16 @@ pyplot.show()"""
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from random import randint
 
-x1, x2, x3, x4, x5, y1, y2, y3, y4, y5 = randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500), randint(0,500)
 xMax, yMax = 100, 100
 
 x = np.arange(xMax)
 y = np.arange(yMax)
 z = np.zeros([xMax,yMax])
-z[1,5] = 10
-z[2,7] = 20
-z[3,9] = 30
+
+for _ in range (10):
+	z[randint(0,100), randint(0,100)] = 20
 
 plt.pcolormesh(x,y,z)
 plt.colorbar()
