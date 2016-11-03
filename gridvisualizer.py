@@ -34,6 +34,7 @@ from random import randint
 import math
 
 xMax, yMax = 100, 100
+heightMax = 50
 numHills = 10
 descentDistance = 5
 
@@ -47,7 +48,10 @@ for _ in range (numHills):
 		for j in range (descentDistance):
 			if (10 - descentDistance/2 - i + xRand <= xMax) & (10 - descentDistance/2 - j + yRand <= yMax):
 				dist = math.sqrt(((descentDistance/2 - i)*(descentDistance/2 - i)) + ((descentDistance/2 - j)*(descentDistance/2 - j)))
-				z[(descentDistance/2 - i + xRand),(descentDistance/2 - j + yRand)] = 20 * dist/(descentDistance/2)
+				if dist == 0:
+					z[(descentDistance/2 - i + xRand),(descentDistance/2 - j + yRand)] = heightMax
+				else:
+					z[(descentDistance/2 - i + xRand),(descentDistance/2 - j + yRand)] = 20 * (descentDistance/2)/dist
 
 plt.pcolormesh(x,y,z)
 plt.colorbar()
