@@ -46,8 +46,8 @@ for _ in range (numHills):
 	for i in range (descentDistance):
 		for j in range (descentDistance):
 			if (10 - descentDistance/2 - i + xRand <= xMax) & (10 - descentDistance/2 - j + yRand <= yMax):
-				dist = math.sqrt(((10 - descentDistance/2 - i)*(10 - descentDistance/2 - i)) + ((10 - descentDistance/2 - j)*(10 - descentDistance/2 - j)))
-				z[(10 - descentDistance/2 - i + xRand),(10 - descentDistance/2 - j + yRand)] = 20 * dist/(descentDistance/2)
+				dist = math.sqrt(((descentDistance/2 - i)*(descentDistance/2 - i)) + ((descentDistance/2 - j)*(descentDistance/2 - j)))
+				z[(descentDistance/2 - i + xRand),(descentDistance/2 - j + yRand)] = 20 * dist/(descentDistance/2)
 
 plt.pcolormesh(x,y,z)
 plt.colorbar()
