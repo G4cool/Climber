@@ -3,7 +3,7 @@ import matplotlib.pyplot as pyplot
 import numpy as np
 
 # make values from -5 to 5, for this example
-zvals = np.random.rand(100,100)*10-5
+zvals = np.random.rand(500,500)*10-5
 
 # make a color map of fixed colors
 cmap = mpl.colors.ListedColormap(['black','green','white'])
