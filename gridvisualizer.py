@@ -31,18 +31,23 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from random import randint
+import math
 
 xMax, yMax = 100, 100
+numHills = 10
+descentDistance = 5
 
 x = np.arange(xMax)
 y = np.arange(yMax)
 z = np.zeros([xMax,yMax])
 
-for _ in range (10):
-	if xMax >= yMax:
-		z[randint(0,(xMax - 1)), randint(0,(xMax - 1))] = 20
-	else:
-		z[randint(0,(yMax - 1)), randint(0,(yMax - 1))] = 20
+for _ in range (numHills):
+	xRand, yRand = randint(0,(xMax - 1)), randint(0,(yMax - 1))
+	for i in range (descentDistance):
+		for j in range (descentDistance):
+			if (10 - descentDistance/2 - i + xRand <= xMax) & (10 - descentDistance/2 - j + yRand <= yMax):
+				dist = math.sqrt(((10 - descentDistance/2 - i)*(10 - descentDistance/2 - i)) + ((10 - descentDistance/2 - j)*(10 - descentDistance/2 - j)))
+				z[(10 - descentDistance/2 - i + xRand),(10 - descentDistance/2 - j + yRand)] = 20 * dist/(descentDistance/2)
 
 plt.pcolormesh(x,y,z)
 plt.colorbar()
