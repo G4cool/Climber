@@ -39,7 +39,10 @@ y = np.arange(yMax)
 z = np.zeros([xMax,yMax])
 
 for _ in range (10):
-	z[randint(0,100), randint(0,100)] = 20
+	if xMax >= yMax:
+		z[randint(0,(xMax - 1)), randint(0,(xMax - 1))] = 20
+	else:
+		z[randint(0,(yMax - 1)), randint(0,(yMax - 1))] = 20
 
 plt.pcolormesh(x,y,z)
 plt.colorbar()
