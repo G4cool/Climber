@@ -36,7 +36,8 @@ z = np.zeros([10,10])
 z[1,5] = 10
 z[2,7] = 20
 z[3,9] = 30
-plt.pcolor(x,y,z)
+# plt.pcolor(x,y,z)
+plt.pcolormesh(x,y,z)
 plt.colorbar()
 
 plt.show()
