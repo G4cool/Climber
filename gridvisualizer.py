@@ -5,7 +5,7 @@ from random import randint
 import math
 from scipy.ndimage.filters import gaussian_filter
 
-xMax, yMax = 150, 150
+xMax, yMax = 250, 250
 heightMax = 50
 numHills = 10
 descentDistance = 150
@@ -32,41 +32,6 @@ for _ in range (numHills):
 				else:
 					z[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)] = 20 * (descentDistance*descentDistanceMultiplier/2)/dist - heightCorrection + zVals[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)]
 					zVals[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)] += 20 * (descentDistance*descentDistanceMultiplier/2)/dist
-
-if blurFactor != 0:
-	for k in range (xMax):
-		for l in range (yMax):
-			sumVals = 0
-			counter = 0
-			if l - blurFactor >= 0:
-				if k - blurFactor >= 0:
-					sumVals += z[(k - blurFactor),(l - blurFactor)]
-					counter += 1
-				sumVals += z[(k),(l - blurFactor)]
-				counter += 1
-				if k + blurFactor < 150:
-					sumVals += z[(k + blurFactor),(l - blurFactor)]
-					counter += 1
-			if k - blurFactor >= 0:
-				sumVals += z[(k - blurFactor),(l)]
-				counter += 1
-			sumVals += z[(k),(l)]
-			counter += 1
-			if k + blurFactor < 150:
-				sumVals += z[(k + blurFactor),(l)]
-				counter += 1
-			if l + blurFactor < 150:
-				if k - blurFactor >= 0:
-					sumVals += z[(k - blurFactor),(l + blurFactor)]
-					counter += 1
-				sumVals += z[(k),(l + blurFactor)]
-				counter += 1
-				if k + blurFactor < 150:
-					sumVals += z[(k + blurFactor),(l + blurFactor)]
-					counter += 1
-
-			average = sumVals/counter
-			z[(k),(l)] = average
 
 blurredZ = gaussian_filter(z, sigma=5)
 
