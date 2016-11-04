@@ -68,7 +68,9 @@ if blurFactor != 0:
 			average = sumVals/counter
 			z[(k),(l)] = average
 
-plt.pcolormesh(x,y,z)
+blurredZ = gaussian_filter(z, sigma=5)
+
+plt.pcolormesh(x,y,blurredZ)
 plt.colorbar()
 
 plt.show()
