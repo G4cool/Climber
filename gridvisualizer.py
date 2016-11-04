@@ -62,10 +62,8 @@ for k in range (xMax):
 				sumVals += z[(k + 1),(l + 1)]
 				counter += 1
 
-		# average = sumVals/counter
-		# z[(k)(l)] = int(round(average))
-		# z[(k)(l)] = 1
-		z[(0),(0)] = 1
+		average = sumVals/counter
+		z[(k),(l)] = average
 
 plt.pcolormesh(x,y,z)
 plt.colorbar()
