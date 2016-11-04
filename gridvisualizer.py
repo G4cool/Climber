@@ -7,9 +7,11 @@ import math
 xMax, yMax = 150, 150
 heightMax = 50
 numHills = 10
-descentDistance = 150
+descentDistance = 10
 descentDistanceMultiplier = 1
 gradient = 10
+distCorrection = math.sqrt(((descentDistance*descentDistanceMultiplier/2 - (descentDistance * descentDistanceMultiplier - 1))*(descentDistance*descentDistanceMultiplier/2 - (descentDistance * descentDistanceMultiplier - 1))) + ((descentDistance*descentDistanceMultiplier/2 - (descentDistance * descentDistanceMultiplier - 1))*(descentDistance*descentDistanceMultiplier/2 - (descentDistance * descentDistanceMultiplier - 1))))/gradient
+heightCorrection = 20 * (descentDistance*descentDistanceMultiplier/2)/distCorrection
 
 x = np.arange(xMax)
 y = np.arange(yMax)
@@ -23,10 +25,10 @@ for _ in range (numHills):
 			if (descentDistance*descentDistanceMultiplier/2 - i + xRand <= xMax) & (descentDistance*descentDistanceMultiplier/2 - j + yRand <= yMax):
 				dist = math.sqrt(((descentDistance*descentDistanceMultiplier/2 - i)*(descentDistance*descentDistanceMultiplier/2 - i)) + ((descentDistance*descentDistanceMultiplier/2 - j)*(descentDistance*descentDistanceMultiplier/2 - j)))/gradient
 				if dist == 0:
-					z[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)] = heightMax + z[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)]
+					z[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)] = heightMax - heightCorrection + z[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)]
 					zVals[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)] += heightMax
 				else:
-					z[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)] = 20 * (descentDistance*descentDistanceMultiplier/2)/dist + zVals[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)]
+					z[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)] = 20 * (descentDistance*descentDistanceMultiplier/2)/dist - heightCorrection + zVals[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)]
 					zVals[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)] += 20 * (descentDistance*descentDistanceMultiplier/2)/dist
 
 plt.pcolormesh(x,y,z)
