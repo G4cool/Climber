@@ -5,7 +5,7 @@ from random import randint
 import math
 from scipy.ndimage.filters import gaussian_filter
 
-xMax, yMax = 250, 250
+xMax, yMax = 150, 150
 heightMax = 50
 numHills = 10
 descentDistance = 150
