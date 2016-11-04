@@ -7,8 +7,8 @@ import math
 xMax, yMax = 150, 150
 heightMax = 50
 numHills = 10
-descentDistance = 15
-descentDistanceMultiplier = 3
+descentDistance = 50
+descentDistanceMultiplier = 1
 
 x = np.arange(xMax)
 y = np.arange(yMax)
