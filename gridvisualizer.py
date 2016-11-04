@@ -7,7 +7,7 @@ import math
 xMax, yMax = 150, 150
 heightMax = 50
 numHills = 10
-descentDistance = 10
+descentDistance = 150
 descentDistanceMultiplier = 1
 gradient = 10
 distCorrection = math.sqrt(((descentDistance*descentDistanceMultiplier/2 - (descentDistance * descentDistanceMultiplier - 1))*(descentDistance*descentDistanceMultiplier/2 - (descentDistance * descentDistanceMultiplier - 1))) + ((descentDistance*descentDistanceMultiplier/2 - (descentDistance * descentDistanceMultiplier - 1))*(descentDistance*descentDistanceMultiplier/2 - (descentDistance * descentDistanceMultiplier - 1))))/gradient
@@ -30,6 +30,42 @@ for _ in range (numHills):
 				else:
 					z[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)] = 20 * (descentDistance*descentDistanceMultiplier/2)/dist - heightCorrection + zVals[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)]
 					zVals[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)] += 20 * (descentDistance*descentDistanceMultiplier/2)/dist
+
+for k in range (xMax):
+	for l in range (yMax):
+		sumVals = 0
+		counter = 0
+		if l - 1 >= 0:
+			if k - 1 >= 0:
+				sumVals += z[(k - 1),(l - 1)]
+				counter += 1
+			sumVals += z[(k),(l - 1)]
+			counter += 1
+			if k + 1 < 150:
+				sumVals += z[(k + 1),(l - 1)]
+				counter += 1
+		if k - 1 >= 0:
+			sumVals += z[(k - 1),(l)]
+			counter += 1
+		sumVals += z[(k),(l)]
+		counter += 1
+		if k + 1 < 150:
+			sumVals += z[(k + 1),(l)]
+			counter += 1
+		if l + 1 < 150:
+			if k - 1 >= 0:
+				sumVals += z[(k - 1),(l + 1)]
+				counter += 1
+			sumVals += z[(k),(l + 1)]
+			counter += 1
+			if k + 1 < 150:
+				sumVals += z[(k + 1),(l + 1)]
+				counter += 1
+
+		# average = sumVals/counter
+		# z[(k)(l)] = int(round(average))
+		# z[(k)(l)] = 1
+		z[(0),(0)] = 1
 
 plt.pcolormesh(x,y,z)
 plt.colorbar()
