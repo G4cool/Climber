@@ -35,7 +35,7 @@ for _ in range (numHills):
 
 blurredZ = gaussian_filter(z, sigma=5)
 
-plt.pcolormesh(x,y,blurredZ)
+plt.pcolormesh(x,y,blurredZ, cmap='RdYlGn')
 plt.colorbar()
 
 plt.show()
