@@ -1,3 +1,4 @@
+import spiral
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -19,7 +20,16 @@ x = np.arange(xMax)
 y = np.arange(yMax)
 z = np.zeros([xMax,yMax])
 zVals = np.zeros([xMax,yMax])
+iterations = 300
+raiseList = spiral.asciiSpiral(iterations)
 
+for i in range(-1*xMax, xMax):
+	for j in range(-1*yMax, yMax):
+		for k in range(iterations):
+			if raiseList[k][0] == i and raiseList[k][1] == j:
+				z[i][j] += heightMax
+
+"""
 for _ in range (numHills):
 	xRand, yRand = randint(0,(xMax - 1)), randint(0,(yMax - 1))
 	for i in range (descentDistance * descentDistanceMultiplier):
@@ -32,6 +42,7 @@ for _ in range (numHills):
 				else:
 					z[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)] = 20 * (descentDistance*descentDistanceMultiplier/2)/dist - heightCorrection + zVals[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)]
 					zVals[(descentDistance*descentDistanceMultiplier/2 - i + xRand - 1),(descentDistance*descentDistanceMultiplier/2 - j + yRand - 1)] += 20 * (descentDistance*descentDistanceMultiplier/2)/dist
+"""
 
 blurredZ = gaussian_filter(z, sigma=5)
 
