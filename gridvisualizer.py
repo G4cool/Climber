@@ -9,7 +9,7 @@ from random import randint
 # import pyglet
 # from scipy.ndimage.filters import gaussian_filter
 
-xMax, yMax = 100, 100
+xMax, yMax = 500, 500
 heightMax = 50
 numHills = 10
 descentDistance = 150
@@ -20,26 +20,42 @@ heightCorrection = 20 * (descentDistance*descentDistanceMultiplier/2)/distCorrec
 blurFactor = 0
 
 x = np.arange(xMax)
+print len(x)
 y = np.arange(yMax)
 z = np.zeros([xMax,yMax])
 zVals = np.zeros([xMax,yMax])
-iterations = 300
-raiseList = spiral.asciiSpiral(iterations)
+# iterations = 300
+# raiseList = spiral.asciiSpiral(iterations)
+octaves = 3
+# scaleFactor = 4
+scaleTerrain = 10
+perlinOctaves = []
 
-lin = np.linspace(0,5,100,endpoint=False)
-x,y = np.meshgrid(lin,lin) # FIX3: I thought I had to invert x and y here but it was a mistake
+for a in range (1, octaves + 1):
+	print len(x)
+	# print 'hi' + str(a)
+	lin = np.linspace(0,5,xMax*a,endpoint=False)
+	xPerlin,yPerlin = np.meshgrid(lin,lin) # FIX3: I thought I had to invert x and y here but it was a mistake
 
-w, h = 100, 100
-perlinArray = [[0 for i in range(w)] for j in range(h)]
+	w, h = xMax*a, yMax*a
+	perlinArray = [[0 for i in range(w)] for j in range(h)]
+	# scaledPerlinArray = [[0 for r in range(xMax*a)] for s in range(yMax*a)]
 
-seed = randint(1, 100)
+	seed = randint(1, 100)
 
-perlinArray = perlinnoise.perlin2(x,y,seed=seed)
-# print perlinnoise.perlin2(x,y,seed=2)
+	perlinArray = perlinnoise.perlin2(xPerlin,yPerlin,seed=2)
+	"""
+	for t in range(xMax*a):
+		for u in range(yMax*a):
+			scaledPerlinArray[t][u] = perlinArray[scaleFactor*t][scaleFactor*u]"""
+	perlinOctaves.append(perlinArray) # WILL END W/ HIGHEST FREQUENCY
+	# print perlinnoise.perlin2(x,y,seed=2)
 
-for i in range(0, 100):
-	for j in range(0, 100):
-		z[i][j] += perlinArray[i][j]
+for i in range(0, xMax):
+	for j in range(0, yMax):
+		for b in range (1, octaves + 1):
+			# print 'hi' + str(b)
+			z[i][j] += scaleTerrain*(octaves/b)*perlinOctaves[b-1][b * i][b * j]
 
 """
 for i in range(-1*xMax, xMax):
